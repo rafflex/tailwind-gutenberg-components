@@ -113,19 +113,17 @@ module.exports = {
       },
 
       /**
-       * Keys for `gutenberg.images.figCaption.textAlign`
+       * Keys for `gutenberg.figCaption.textAlign`
        * map to the alignment of the containing block
        */
-      images: {
-        figCaption: {
-          textAlign: {
-            left:   'left',
-            right:  'right',
-            center: 'center',
-            wide:   'center',
-          },
-          fontFamily: theme('fontFamily.sans'),
+      figCaption: {
+        textAlign: {
+          left:   'left',
+          right:  'right',
+          center: 'center',
+          wide:   'center',
         },
+        fontFamily: theme('fontFamily.sans'),
       },
 
       /**
