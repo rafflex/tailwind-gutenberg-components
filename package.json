@@ -34,5 +34,8 @@
     "husky": "^4.2.3",
     "lint-staged": "^10.1.2",
     "prettier": "^2.0.3"
+  },
+  "peerDependencies": {
+    "lodash": "^4.17.15"
   }
 }

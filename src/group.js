@@ -11,9 +11,7 @@ module.exports = ({ addComponents, theme }) => {
         display: 'flex',
       },
     },
-  }
+  };
 
-  addComponents([
-    group,
-  ])
-}
+  addComponents([group]);
+};

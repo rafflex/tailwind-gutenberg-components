@@ -1,7 +1,7 @@
 module.exports = ({ addComponents, theme }) => {
-  const options = theme('gutenberg.blocks.cover')
+  const options = theme('gutenberg.blocks.cover');
 
-  const cover = ({
+  const cover = {
     '.wp-block-cover': {
       display: 'flex',
       flexDirection: 'column',
@@ -38,9 +38,7 @@ module.exports = ({ addComponents, theme }) => {
         },
       },
     },
-  })
+  };
 
-  addComponents([
-    cover,
-  ])
-}
+  addComponents([cover]);
+};

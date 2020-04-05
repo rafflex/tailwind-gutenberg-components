@@ -2,9 +2,9 @@
  * core/table
  */
 module.exports = ({ addComponents, theme }) => {
-  const options = theme('gutenberg')
+  const options = theme('gutenberg');
 
-  const table = ({
+  const table = {
     '.wp-block-table': {
       borderCollapse: 'collapse',
       overflowX: 'auto',
@@ -28,28 +28,28 @@ module.exports = ({ addComponents, theme }) => {
         tableLayout: 'auto',
       },
     },
-  })
+  };
 
-  const fixedLayout = ({
+  const fixedLayout = {
     '.has-fixed-layout': {
       tableLayout: 'fixed',
       width: '100%',
 
-      ['td, th']: {
+      'td, th': {
         wordBreak: 'break-word',
       },
     },
-  })
+  };
 
-  const striped = ({
+  const striped = {
     '.is-style-stripes tr:nth-child(odd)': {
       backgroundColor: options.blocks.table.stripes.color,
     },
-  })
+  };
 
   addComponents([
     table,
     options.styles.stripes ? striped : null,
     options.supports.fixedLayout ? fixedLayout : null,
-  ])
-}
+  ]);
+};

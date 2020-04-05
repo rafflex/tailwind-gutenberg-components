@@ -1,8 +1,5 @@
 module.exports = ({ addComponents }) => {
-  const embeds = ({
-  })
+  const embeds = {};
 
-  addComponents([
-    embeds,
-  ])
-}
+  addComponents([embeds]);
+};

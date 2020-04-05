@@ -1,5 +1,5 @@
 module.exports = ({ addComponents, theme }) => {
-  const opts = theme('gutenberg')
+  const opts = theme('gutenberg');
   const specialAlignment = {
     '.wp-block-embed.alignfull, .wp-block-embed.alignwide': {
       paddingLeft: 0,
@@ -15,31 +15,31 @@ module.exports = ({ addComponents, theme }) => {
         marginRight: 'auto',
       },
     },
-  }
+  };
 
   const alignLeft = {
     '.wp-block-embed .alignleft': {
       float: 'left',
       maxWidth: '50%',
 
-      'iframe': {
+      iframe: {
         width: '100%',
         paddingRight: theme('gutenberg.columnGap'),
       },
     },
-  }
+  };
 
   const alignRight = {
     '.wp-block-embed .alignRight': {
       float: 'right',
       maxWidth: '50%',
 
-      'iframe': {
+      iframe: {
         width: '100%',
         paddingLeft: theme('gutenberg.columnGap'),
       },
     },
-  }
+  };
 
   const alignNone = {
     '.wp-block-embed:not(.alignleft):not(.alignright):not(.alignfull):not(.alignwide)': {
@@ -53,12 +53,7 @@ module.exports = ({ addComponents, theme }) => {
         paddingBottom: theme('gutenberg.rowGap'),
       },
     },
-  }
+  };
 
-  addComponents([
-    specialAlignment,
-    alignLeft,
-    alignRight,
-    alignNone,
-  ])
-}
+  addComponents([specialAlignment, alignLeft, alignRight, alignNone]);
+};

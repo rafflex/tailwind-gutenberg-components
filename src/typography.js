@@ -1,17 +1,17 @@
-const plugin = require("tailwindcss/plugin");
-const _ = require("lodash");
+const plugin = require('tailwindcss/plugin');
+const _ = require('lodash');
 
 module.exports = plugin(({ addComponents, theme }) => {
   /**
    * Tailwind Config Options
    */
-  const familyConfig = theme("gutenberg.typography.fontFamily");
-  const colorConfig = theme("gutenberg.typography.fontColor");
+  const familyConfig = theme('gutenberg.typography.fontFamily');
+  const colorConfig = theme('gutenberg.typography.fontColor');
   const sizeConfig = _.omit(
-    theme("gutenberg.typography.fontSize"),
-    "generated"
+    theme('gutenberg.typography.fontSize'),
+    'generated',
   );
-  const userScaleConfig = theme("gutenberg.fontSize.userScale");
+  const userScaleConfig = theme('gutenberg.fontSize.userScale');
 
   /**
    * Font Families
@@ -57,19 +57,19 @@ module.exports = plugin(({ addComponents, theme }) => {
       ol:not([class^="wp-block-"]) li *,
       ul:not([class^="wp-block-"]) li,
       ul:not([class^="wp-block-"]) li *`]: {
-      paddingLeft: theme("gutenberg.lists.inset"),
+      paddingLeft: theme('gutenberg.lists.inset'),
     },
 
     [`ol:not([class^="wp-block-"]),
       ol:not([class^="wp-block-"]) *`]: {
-      listStylePosition: "inside",
-      listStyleType: theme("gutenberg.lists.orderedStyle"),
+      listStylePosition: 'inside',
+      listStyleType: theme('gutenberg.lists.orderedStyle'),
     },
 
     [`ul:not([class^="wp-block-"]),
       ul:not([class^="wp-block-"]) *`]: {
-      listStylePosition: "inside",
-      listStyleType: theme("gutenberg.lists.unorderedStyle"),
+      listStylePosition: 'inside',
+      listStyleType: theme('gutenberg.lists.unorderedStyle'),
     },
   };
 
