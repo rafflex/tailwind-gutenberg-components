@@ -5,7 +5,7 @@
     "name": "Ethan Veres"
   },
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "chroma-js": "2.0.3",
     "tailwindcss": "^1.2.0"
   }
