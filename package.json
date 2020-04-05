@@ -1,5 +1,10 @@
 {
   "name": "tailwind-gutenberg",
+  "version": "1.0.0",
+  "author": {
+    "name": "Ethan Veres"
+  },
+  "license": "MIT",
   "devDependencies": {
     "chroma-js": "2.0.3",
     "tailwindcss": "^1.2.0"
