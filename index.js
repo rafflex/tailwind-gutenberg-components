@@ -1,13 +1,13 @@
+const basePlugin = require("tailwindcss/plugin");
+const defaultConfig = require("./src/default.config");
+
+const plugin = (p) => basePlugin((opts) => p(opts), defaultConfig(opts.theme));
+
 /**
  * Tailwind/Gutenberg
  * @link https://git.io/Jv6Oz
  */
 module.exports = {
-  /**
-   * Default config
-   */
-  defaultConfig: require('./src/default.config'),
-
   /**
    * Block contents
    *
@@ -16,7 +16,7 @@ module.exports = {
    *  - rowGap
    *  - screens
    */
-  blockContent: require('./src/block-content'),
+  blockContent: plugin(require("./src/block-content")),
 
   /**
    * Typographic settings
@@ -26,7 +26,7 @@ module.exports = {
    *  - fontSizes
    *  - fontSizes.generated
    */
-  typography: require('./src/typography'),
+  typography: plugin(require("./src/typography")),
 
   /**
    * Base color settings
@@ -34,7 +34,7 @@ module.exports = {
    * Required config keys:
    *  - gutenberg.colors
    */
-  colors: require('./src/colors'),
+  colors: plugin(require("./src/colors")),
 
   /**
    * core/embed
@@ -42,43 +42,43 @@ module.exports = {
    * Required config keys:
    *  - @todo
    */
-  aspectRatios: require('./src/aspect-ratios'),
+  aspectRatios: plugin(require("./src/aspect-ratios")),
 
   /**
    * core/group
    * core/columns
    * core/column
    */
-  columns: require('./src/columns'),
-  group: require('./src/group'),
+  columns: plugin(require("./src/columns")),
+  group: plugin(require("./src/group")),
 
   /**
    * Figcaptions
    */
-  figcaption: require('./src/figcaption'),
+  figcaption: plugin(require("./src/figcaption")),
 
   /**
    * core/embed
    */
-  blockEmbed: require('./src/block-embed'),
+  blockEmbed: plugin(require("./src/block-embed")),
 
   /**
    * core/image
    */
-  image: require('./src/block-image'),
+  image: plugin(require("./src/block-image")),
 
   /**
    * core/video
    */
-  video: require('./src/block-video'),
+  video: plugin(require("./src/block-video")),
 
   /**
    * core/cover
    */
-  cover: require('./src/block-cover'),
+  cover: plugin(require("./src/block-cover")),
 
   /**
    * core/table
    */
-  table: require('./src/block-table'),
-}
+  table: plugin(require("./src/block-table")),
+};
