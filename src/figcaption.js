@@ -1,4 +1,6 @@
-module.exports = ({ addComponents, theme }) => {
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   const figCaption = {
     '.alignfull, .alignwide': {
       figcaption: {
@@ -46,4 +48,4 @@ module.exports = ({ addComponents, theme }) => {
   };
 
   addComponents([figCaption]);
-};
+});

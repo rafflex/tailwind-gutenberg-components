@@ -1,3 +1,5 @@
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+
 /**
  * Grid
  */
@@ -18,7 +20,7 @@ const makeGrid = () => {
   return gridTemplate;
 };
 
-module.exports = ({ addComponents, theme }) => {
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   const options = theme('gutenberg');
   const gridTemplate = makeGrid();
 
@@ -64,4 +66,4 @@ module.exports = ({ addComponents, theme }) => {
   }));
 
   addComponents([gallery]);
-};
+});

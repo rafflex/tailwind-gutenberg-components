@@ -1,7 +1,9 @@
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+
 /**
  * core/table
  */
-module.exports = ({ addComponents, theme }) => {
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   const options = theme('gutenberg');
 
   const table = {
@@ -52,4 +54,4 @@ module.exports = ({ addComponents, theme }) => {
     options.styles.stripes ? striped : null,
     options.supports.fixedLayout ? fixedLayout : null,
   ]);
-};
+});

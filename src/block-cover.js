@@ -1,4 +1,6 @@
-module.exports = ({ addComponents, theme }) => {
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   const options = theme('gutenberg.blocks.cover');
 
   const cover = {
@@ -41,4 +43,4 @@ module.exports = ({ addComponents, theme }) => {
   };
 
   addComponents([cover]);
-};
+});

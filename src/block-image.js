@@ -1,4 +1,6 @@
-module.exports = ({ addComponents, theme }) => {
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   const specialAlignments = {
     '.wp-block-image.alignfull, .wp-block-image.alignwide': {
       paddingLeft: 0,
@@ -43,4 +45,4 @@ module.exports = ({ addComponents, theme }) => {
   if (theme('gutenberg.supports.wideAlignments')) {
     addComponents(specialAlignments);
   }
-};
+});

@@ -1,6 +1,8 @@
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+
 const percent = (dividend, divisor) => (dividend / divisor) * 100;
 
-module.exports = ({ addComponents }) => {
+module.exports = pluginWithDefaultConfig(({ addComponents }) => {
   const ratios = [
     [21, 9],
     [18, 9],
@@ -38,4 +40,4 @@ module.exports = ({ addComponents }) => {
   }));
 
   addComponents([wrapper, aspectRatios]);
-};
+});

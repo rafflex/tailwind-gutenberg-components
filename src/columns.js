@@ -1,3 +1,5 @@
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+
 /**
  * Grid
  */
@@ -17,7 +19,7 @@ const constructGridObject = () => {
   return gridTemplate;
 };
 
-module.exports = ({ addComponents, theme }) => {
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   const options = theme('gutenberg');
   const colGap = options.spacing.horizontal;
 
@@ -59,4 +61,4 @@ module.exports = ({ addComponents, theme }) => {
   }));
 
   addComponents([columns]);
-};
+});

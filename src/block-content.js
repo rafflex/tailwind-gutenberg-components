@@ -1,7 +1,9 @@
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+
 /**
  * Block Content
  */
-module.exports = ({ addComponents, theme }) => {
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   const { blockContent, screens, spacing, wrapper } = theme('gutenberg');
 
   const block = {
@@ -92,4 +94,4 @@ module.exports = ({ addComponents, theme }) => {
   };
 
   addComponents(block);
-};
+});

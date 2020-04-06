@@ -1,13 +1,14 @@
 /** Modules */
 const _ = require('lodash');
 const chroma = require('chroma-js');
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
 
 const opacities = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
 /**
  * Colors
  */
-module.exports = ({ addComponents, theme }) => {
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   const options = theme('gutenberg.colors');
 
   const colors = _.map(options, (color, name) => ({
@@ -36,4 +37,4 @@ module.exports = ({ addComponents, theme }) => {
   );
 
   addComponents([colors, ...shades]);
-};
+});

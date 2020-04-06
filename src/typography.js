@@ -1,7 +1,7 @@
-const plugin = require('tailwindcss/plugin');
 const _ = require('lodash');
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
 
-module.exports = plugin(({ addComponents, theme }) => {
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   /**
    * Tailwind Config Options
    */
@@ -11,7 +11,7 @@ module.exports = plugin(({ addComponents, theme }) => {
     theme('gutenberg.typography.fontSize'),
     'generated',
   );
-  const userScaleConfig = theme('gutenberg.fontSize.userScale');
+  const userScaleConfig = theme('gutenberg.typography.fontSize.userScale');
 
   /**
    * Font Families

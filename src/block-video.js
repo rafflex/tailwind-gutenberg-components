@@ -1,4 +1,6 @@
-module.exports = ({ addComponents, theme }) => {
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   const opts = theme('gutenberg');
   const specialAlignment = {
     '.wp-block-embed.alignfull, .wp-block-embed.alignwide': {
@@ -56,4 +58,4 @@ module.exports = ({ addComponents, theme }) => {
   };
 
   addComponents([specialAlignment, alignLeft, alignRight, alignNone]);
-};
+});

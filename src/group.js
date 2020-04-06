@@ -1,4 +1,6 @@
-module.exports = ({ addComponents, theme }) => {
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   const options = theme('gutenberg.spacing');
 
   const group = {
@@ -14,4 +16,4 @@ module.exports = ({ addComponents, theme }) => {
   };
 
   addComponents([group]);
-};
+});
