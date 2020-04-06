@@ -5,6 +5,9 @@
     "name": "Ethan Veres"
   },
   "license": "MIT",
+  "files": [
+    "src"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
