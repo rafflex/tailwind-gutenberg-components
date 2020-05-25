@@ -1,7 +1,9 @@
-module.exports = ({ addComponents, theme }) => {
-  const options = theme('gutenberg.blocks.cover')
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
 
-  const cover = ({
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
+  const options = theme('gutenberg.blocks.cover');
+
+  const cover = {
     '.wp-block-cover': {
       display: 'flex',
       flexDirection: 'column',
@@ -38,9 +40,7 @@ module.exports = ({ addComponents, theme }) => {
         },
       },
     },
-  })
+  };
 
-  addComponents([cover], {
-    respectPrefix: false,
-  });
-}
+  addComponents([cover]);
+});

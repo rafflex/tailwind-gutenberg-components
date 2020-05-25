@@ -1,8 +1,10 @@
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+
 /**
  * Block Content
  */
-module.exports = ({ addComponents, theme }) => {
-  const { blockContent, screens, spacing, wrapper } = theme('gutenberg')
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
+  const { blockContent, screens, spacing, wrapper } = theme('gutenberg');
 
   const block = {
     [`${wrapper.selector}`]: {
@@ -89,9 +91,7 @@ module.exports = ({ addComponents, theme }) => {
         },
       },
     },
-  }
+  };
 
-  addComponents(block, {
-    respectPrefix: false,
-  });
-}
+  addComponents(block);
+});

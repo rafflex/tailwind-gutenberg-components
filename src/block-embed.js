@@ -1,8 +1,7 @@
-module.exports = ({ addComponents }) => {
-  const embeds = ({
-  })
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
 
-  addComponents([embeds], {
-    respectPrefix: false,
-  });
-}
+module.exports = pluginWithDefaultConfig(({ addComponents }) => {
+  const embeds = {};
+
+  addComponents([embeds]);
+});

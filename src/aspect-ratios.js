@@ -1,6 +1,8 @@
-const percent = (dividend, divisor) => (dividend / divisor) * 100
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
 
-module.exports = ({ addComponents }) => {
+const percent = (dividend, divisor) => (dividend / divisor) * 100;
+
+module.exports = pluginWithDefaultConfig(({ addComponents }) => {
   const ratios = [
     [21, 9],
     [18, 9],
@@ -9,13 +11,13 @@ module.exports = ({ addComponents }) => {
     [1, 1],
     [9, 6],
     [1, 2],
-  ]
+  ];
 
   const wrapper = {
     '.wp-block-embed__wrapper': {
       position: 'relative',
 
-      'iframe': {
+      iframe: {
         position: 'absolute',
         top: 0,
         right: 0,
@@ -25,7 +27,7 @@ module.exports = ({ addComponents }) => {
         height: '100%',
       },
     },
-  }
+  };
 
   const aspectRatios = ratios.map(([w, h]) => ({
     [`.wp-embed-aspect-${w}-${h}`]: {
@@ -35,9 +37,7 @@ module.exports = ({ addComponents }) => {
         paddingTop: `${percent(w, h)}%`,
       },
     },
-  }))
+  }));
 
-  addComponents([wrapper, aspectRatios], {
-    respectPrefix: false,
-  });
-}
+  addComponents([wrapper, aspectRatios]);
+});

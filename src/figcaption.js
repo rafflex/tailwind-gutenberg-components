@@ -1,7 +1,9 @@
-module.exports = ({ addComponents, theme }) => {
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   const figCaption = {
     '.alignfull, .alignwide': {
-      'figcaption': {
+      figcaption: {
         paddingTop: theme('gutenberg.spacing.horizontal'),
         paddingBottom: 0,
         textAlign: theme('gutenberg.figCaption.align.wide'),
@@ -9,7 +11,7 @@ module.exports = ({ addComponents, theme }) => {
     },
 
     '.alignleft': {
-      'figcaption': {
+      figcaption: {
         textAlign: theme('gutenberg.figCaption.align.left'),
         padding: `
           ${theme('gutenberg.spacing.horizontal')}
@@ -21,7 +23,7 @@ module.exports = ({ addComponents, theme }) => {
     },
 
     '.aligncenter': {
-      'figcaption': {
+      figcaption: {
         textAlign: theme('gutenberg.figCaption.align.left'),
         padding: `
           ${theme('gutenberg.spacing.horizontal')}
@@ -33,7 +35,7 @@ module.exports = ({ addComponents, theme }) => {
     },
 
     '.alignright': {
-      'figcaption': {
+      figcaption: {
         textAlign: theme('gutenberg.figCaption.align.right'),
         padding: `
           ${theme('gutenberg.spacing.horizontal')}
@@ -43,9 +45,7 @@ module.exports = ({ addComponents, theme }) => {
         `,
       },
     },
-  }
+  };
 
-  addComponents([figCaption], {
-    respectPrefix: false,
-  });
-}
+  addComponents([figCaption]);
+});

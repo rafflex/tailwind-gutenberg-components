@@ -1,29 +1,31 @@
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+
 /**
  * Grid
  */
 const constructGridObject = () => {
-  var gridTemplate = []
-  var gridIteration = 2
+  const gridTemplate = [];
+  let gridIteration = 2;
 
   while (gridIteration < 13) {
     gridTemplate.push({
-      'count': gridIteration,
-      'selector': `&.has-${gridIteration}-columns`,
-    })
+      count: gridIteration,
+      selector: `&.has-${gridIteration}-columns`,
+    });
 
-    gridIteration++
+    gridIteration += 1;
   }
 
-  return gridTemplate
-}
+  return gridTemplate;
+};
 
-module.exports = ({ addComponents, theme }) => {
-  const options = theme('gutenberg')
-  const colGap = options.spacing.horizontal
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
+  const options = theme('gutenberg');
+  const colGap = options.spacing.horizontal;
 
-  const gridTemplate = constructGridObject()
+  const gridTemplate = constructGridObject();
 
-  const columns = gridTemplate.map(obj => ({
+  const columns = gridTemplate.map((obj) => ({
     [`div:not(.wp-block-group)`]: {
       '.wp-block-columns, .is-grid': {
         paddingLeft: colGap,
@@ -56,9 +58,7 @@ module.exports = ({ addComponents, theme }) => {
         },
       },
     },
-  }))
+  }));
 
-  addComponents([columns], {
-    respectPrefix: false,
-  });
-}
+  addComponents([columns]);
+});

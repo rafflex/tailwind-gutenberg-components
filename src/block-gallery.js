@@ -1,29 +1,31 @@
+const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+
 /**
  * Grid
  */
 const makeGrid = () => {
-  let gridTemplate = [],
-      gridIteration = 1
+  const gridTemplate = [];
+  let gridIteration = 1;
 
   while (gridIteration < 9) {
     gridTemplate.push({
-      'count': gridIteration,
-      'width': `${100 / gridIteration}%`,
-      'selector': `&.columns-${gridIteration}`,
-    })
+      count: gridIteration,
+      width: `${100 / gridIteration}%`,
+      selector: `&.columns-${gridIteration}`,
+    });
 
-    gridIteration++
+    gridIteration += 1;
   }
 
-  return gridTemplate
-}
+  return gridTemplate;
+};
 
-module.exports = ({ addComponents, theme }) => {
-  const options = theme('gutenberg')
-  const gridTemplate = makeGrid()
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
+  const options = theme('gutenberg');
+  const gridTemplate = makeGrid();
 
-  const gallery = gridTemplate.map(obj => ({
-    ['.wp-block-gallery, .blocks-gallery-grid']: {
+  const gallery = gridTemplate.map((obj) => ({
+    '.wp-block-gallery, .blocks-gallery-grid': {
       display: 'flex',
       flexGrow: 1,
       flexDirection: 'row',
@@ -37,7 +39,7 @@ module.exports = ({ addComponents, theme }) => {
           minWidth: '100%',
           paddingBottom: `calc(${options.spacing.vertical.default} / 2)`,
 
-          ['figure, figure img']: {
+          'figure, figure img': {
             width: '100%',
           },
         },
@@ -50,7 +52,7 @@ module.exports = ({ addComponents, theme }) => {
           },
         },
 
-        ['&.is-cropped figure, &.is-cropped figure img']: {
+        '&.is-cropped figure, &.is-cropped figure img': {
           objectFit: 'cover',
           height: '100%',
           width: '100%',
@@ -61,9 +63,7 @@ module.exports = ({ addComponents, theme }) => {
         },
       },
     },
-  }))
+  }));
 
-  addComponents([gallery], {
-    respectPrefix: false,
-  });
-}
+  addComponents([gallery]);
+});
