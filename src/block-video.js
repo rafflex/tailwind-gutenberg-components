@@ -55,10 +55,7 @@ module.exports = ({ addComponents, theme }) => {
     },
   }
 
-  addComponents([
-    specialAlignment,
-    alignLeft,
-    alignRight,
-    alignNone,
-  ])
+  addComponents([specialAlignment, alignLeft, alignRight, alignNone], {
+    respectPrefix: false,
+  });
 }

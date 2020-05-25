@@ -37,8 +37,7 @@ module.exports = ({ addComponents }) => {
     },
   }))
 
-  addComponents([
-    wrapper,
-    aspectRatios,
-  ])
+  addComponents([wrapper, aspectRatios], {
+    respectPrefix: false,
+  });
 }

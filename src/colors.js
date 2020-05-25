@@ -45,8 +45,7 @@ module.exports = ({addComponents, theme}) => {
     }))
   ))
 
-  addComponents([
-    colors,
-    ...shades,
-  ])
+  addComponents([colors, ...shades], {
+    respectPrefix: false,
+  });
 }

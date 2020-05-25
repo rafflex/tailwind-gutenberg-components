@@ -58,7 +58,7 @@ module.exports = ({ addComponents, theme }) => {
     },
   }))
 
-  addComponents([
-    columns,
-  ])
+  addComponents([columns], {
+    respectPrefix: false,
+  });
 }

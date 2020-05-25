@@ -2,7 +2,7 @@ module.exports = ({ addComponents }) => {
   const embeds = ({
   })
 
-  addComponents([
-    embeds,
-  ])
+  addComponents([embeds], {
+    respectPrefix: false,
+  });
 }

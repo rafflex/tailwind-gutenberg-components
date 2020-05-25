@@ -47,9 +47,14 @@ module.exports = ({ addComponents, theme }) => {
     },
   })
 
-  addComponents([
-    table,
-    options.styles.stripes ? striped : null,
-    options.supports.fixedLayout ? fixedLayout : null,
-  ])
+  addComponents(
+    [
+      table,
+      options.styles.stripes ? striped : null,
+      options.supports.fixedLayout ? fixedLayout : null,
+    ],
+    {
+      respectPrefix: false,
+    }
+  );
 }

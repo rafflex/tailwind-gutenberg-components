@@ -13,7 +13,7 @@ module.exports = ({ addComponents, theme }) => {
     },
   }
 
-  addComponents([
-    group,
-  ])
+  addComponents([group], {
+    respectPrefix: false,
+  });
 }

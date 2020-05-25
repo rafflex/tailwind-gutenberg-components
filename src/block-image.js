@@ -38,11 +38,12 @@ module.exports = ({ addComponents, theme }) => {
     },
   }
 
-  addComponents([
-    alignLeft,
-    alignRight,
-  ])
+  addComponents([alignLeft, alignRight], {
+    respectPrefix: false,
+  });
 
-  theme('gutenberg.supports.wideAlignments')
-    && addComponents(specialAlignments)
+  theme("gutenberg.supports.wideAlignments") &&
+    addComponents(specialAlignments, {
+      respectPrefix: false,
+    });
 }

@@ -40,7 +40,7 @@ module.exports = ({ addComponents, theme }) => {
     },
   })
 
-  addComponents([
-    cover,
-  ])
+  addComponents([cover], {
+    respectPrefix: false,
+  });
 }

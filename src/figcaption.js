@@ -45,5 +45,7 @@ module.exports = ({ addComponents, theme }) => {
     },
   }
 
-  addComponents([figCaption])
+  addComponents([figCaption], {
+    respectPrefix: false,
+  });
 }

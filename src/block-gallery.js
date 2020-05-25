@@ -63,7 +63,7 @@ module.exports = ({ addComponents, theme }) => {
     },
   }))
 
-  addComponents([
-    gallery,
-  ])
+  addComponents([gallery], {
+    respectPrefix: false,
+  });
 }

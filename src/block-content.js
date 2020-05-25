@@ -91,5 +91,7 @@ module.exports = ({ addComponents, theme }) => {
     },
   }
 
-  addComponents(block)
+  addComponents(block, {
+    respectPrefix: false,
+  });
 }
