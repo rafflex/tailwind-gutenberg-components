@@ -42,5 +42,5 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
     },
   };
 
-  addComponents([cover]);
+  addComponents([cover], { respectPrefix: false });
 });

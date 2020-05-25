@@ -65,5 +65,5 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
     },
   }));
 
-  addComponents([gallery]);
+  addComponents([gallery], { respectPrefix: false });
 });

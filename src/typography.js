@@ -73,5 +73,7 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
     },
   };
 
-  addComponents([fonts, sizes, colors, generatedFontSizes, listStyles]);
+  addComponents([fonts, sizes, colors, generatedFontSizes, listStyles], {
+    respectPrefix: false,
+  });
 });

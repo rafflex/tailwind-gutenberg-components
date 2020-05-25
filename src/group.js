@@ -15,5 +15,5 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
     },
   };
 
-  addComponents([group]);
+  addComponents([group], { respectPrefix: false });
 });

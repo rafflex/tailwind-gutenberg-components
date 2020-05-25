@@ -47,5 +47,5 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
     },
   };
 
-  addComponents([figCaption]);
+  addComponents([figCaption], { respectPrefix: false });
 });

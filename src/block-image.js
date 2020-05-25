@@ -40,9 +40,9 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
     },
   };
 
-  addComponents([alignLeft, alignRight]);
+  addComponents([alignLeft, alignRight], { respectPrefix: false });
 
   if (theme('gutenberg.supports.wideAlignments')) {
-    addComponents(specialAlignments);
+    addComponents(specialAlignments, { respectPrefix: false });
   }
 });

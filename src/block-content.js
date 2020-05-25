@@ -93,5 +93,5 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
     },
   };
 
-  addComponents(block);
+  addComponents(block, { respectPrefix: false });
 });

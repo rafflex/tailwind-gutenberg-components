@@ -39,5 +39,5 @@ module.exports = pluginWithDefaultConfig(({ addComponents }) => {
     },
   }));
 
-  addComponents([wrapper, aspectRatios]);
+  addComponents([wrapper, aspectRatios], { respectPrefix: false });
 });

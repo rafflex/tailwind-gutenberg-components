@@ -36,5 +36,5 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
     })),
   );
 
-  addComponents([colors, ...shades]);
+  addComponents([colors, ...shades], { respectPrefix: false });
 });
