@@ -25,7 +25,9 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
     },
   }));
 
-  const shades = _.map(options, (color, name) =>
+  const validColors = _.filter(options, (color) => _.isNumber(color) || color.trim().match(/^(#|rgb|hsl|hsv|hsi|lab|lch|hcl|lrgb)/));
+
+  const shades = _.map(validColors, (color, name) =>
     _.map(opacities, (opacity) => ({
       [`.has-${name}-background-color.has-background-dim-${opacity}`]: {
         backgroundColor: `rgba(${chroma(color)
