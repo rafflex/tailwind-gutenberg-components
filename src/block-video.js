@@ -1,15 +1,16 @@
 const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
 
 module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
-  const opts = theme('gutenberg');
+  const options = theme('gutenberg');
+
   const specialAlignment = {
     '.wp-block-embed.alignfull, .wp-block-embed.alignwide': {
       paddingLeft: 0,
       paddingRight: 0,
       marginLeft: 'auto',
       marginRight: 'auto',
-      marginTop: opts.rowGap,
-      marginBottom: opts.rowGap,
+      marginTop: options.rowGap,
+      marginBottom: options.rowGap,
 
       'iframe, video': {
         width: '100%',
