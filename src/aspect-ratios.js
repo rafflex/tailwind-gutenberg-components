@@ -34,7 +34,7 @@ module.exports = pluginWithDefaultConfig(({ addComponents }) => {
       '.wp-block-embed__wrapper::before': {
         content: `''`,
         display: 'block',
-        paddingTop: `${percent(w, h)}%`,
+        paddingTop: `${percent(h, w)}%`,
       },
     },
   }));
