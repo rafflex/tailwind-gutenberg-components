@@ -1,6 +1,6 @@
 const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
 
-const percent = (dividend, divisor) => (dividend / divisor) * 100;
+const percent = require('./utils/percent');
 
 module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   const ratios = theme('gutenberg.aspectRatios', [
