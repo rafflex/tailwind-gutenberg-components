@@ -25,7 +25,12 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
     },
   }));
 
-  const validColors = _.filter(options, (color) => _.isNumber(color) || color.trim().match(/^(#|rgb|hsl|hsv|hsi|lab|lch|hcl|lrgb)/));
+  const validColors = _.filter(
+    options,
+    (color) =>
+      _.isNumber(color) ||
+      `${color}`.trim().match(/^(#|rgb|hsl|hsv|hsi|lab|lch|hcl|lrgb)/),
+  );
 
   const shades = _.map(validColors, (color, name) =>
     _.map(opacities, (opacity) => ({
