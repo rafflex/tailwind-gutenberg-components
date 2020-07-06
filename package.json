@@ -25,7 +25,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "chroma-js": "2.0.3",
+    "chroma-js": "2.1.0",
     "tailwindcss": "^1.4.0"
   },
   "devDependencies": {
@@ -35,7 +35,7 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
-    "lint-staged": "^10.1.2",
+    "lint-staged": "^10.2.11",
     "prettier": "^2.0.3"
   },
   "peerDependencies": {
