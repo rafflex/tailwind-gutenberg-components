@@ -1,6 +1,6 @@
-const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+const pluginWithDefaultConfig = require('./util/plugin-with-default-config');
 
-const percent = require('./utils/percent');
+const percent = require('./util/percent');
 
 module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   const ratios = theme('gutenberg.aspectRatios', [

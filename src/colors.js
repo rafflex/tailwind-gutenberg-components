@@ -1,7 +1,7 @@
 /** Modules */
 const _ = require('lodash');
 const chroma = require('chroma-js');
-const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+const pluginWithDefaultConfig = require('./util/plugin-with-default-config');
 
 /**
  * Colors

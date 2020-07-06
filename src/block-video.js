@@ -1,4 +1,4 @@
-const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
+const pluginWithDefaultConfig = require('./util/plugin-with-default-config');
 
 module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   const options = theme('gutenberg');
