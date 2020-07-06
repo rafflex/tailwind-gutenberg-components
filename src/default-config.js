@@ -81,6 +81,19 @@ module.exports = {
   },
 
   /**
+   * Aspect ratios
+   */
+  aspectRatios: [
+    [21, 9],
+    [18, 9],
+    [16, 9],
+    [4, 3],
+    [1, 1],
+    [9, 6],
+    [1, 2],
+  ],
+
+  /**
    * Wordpress generated colors
    * @link https://git.io/Jv6Oc
    */

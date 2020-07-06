@@ -2,8 +2,8 @@ const pluginWithDefaultConfig = require('./utils/plugin-with-default-config');
 
 const percent = (dividend, divisor) => (dividend / divisor) * 100;
 
-module.exports = pluginWithDefaultConfig(({ addComponents }) => {
-  const ratios = [
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
+  const ratios = theme('gutenberg.aspectRatios', [
     [21, 9],
     [18, 9],
     [16, 9],
@@ -11,7 +11,7 @@ module.exports = pluginWithDefaultConfig(({ addComponents }) => {
     [1, 1],
     [9, 6],
     [1, 2],
-  ];
+  ]);
 
   const wrapper = {
     '.wp-block-embed__wrapper': {
