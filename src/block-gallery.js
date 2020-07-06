@@ -1,28 +1,31 @@
 const pluginWithDefaultConfig = require('./util/plugin-with-default-config');
+const themeRecursive = require('./util/theme-recursive');
 
 /**
  * Grid
  */
-const makeGrid = () => {
-  const gridTemplate = [];
-  let gridIteration = 1;
+const makeGridTemplate = ({ max = 12, start = 1 }) => {
+  const template = [];
+  let column = start;
 
-  while (gridIteration < 9) {
-    gridTemplate.push({
-      count: gridIteration,
-      width: `${100 / gridIteration}%`,
-      selector: `&.columns-${gridIteration}`,
+  while (column <= max) {
+    template.push({
+      count: column,
+      width: `${100 / column}%`,
+      selector: `&.columns-${column}`,
     });
 
-    gridIteration += 1;
+    column += 1;
   }
 
-  return gridTemplate;
+  return template;
 };
 
 module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
+  const themeValue = themeRecursive(theme);
+
   const options = theme('gutenberg');
-  const gridTemplate = makeGrid();
+  const gridTemplate = makeGridTemplate({ max: 8 });
 
   const gallery = gridTemplate.map((obj) => ({
     '.wp-block-gallery, .blocks-gallery-grid': {
@@ -37,18 +40,20 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
         '> .blocks-gallery-item': {
           flex: 1,
           minWidth: '100%',
-          paddingBottom: `calc(${options.spacing.vertical.default} / 2)`,
+          paddingBottom: `calc(${themeValue(
+            options.spacing.vertical.default,
+          )} / 2)`,
 
           'figure, figure img': {
             width: '100%',
           },
         },
 
-        [`@media (min-width: ${options.screens.md})`]: {
+        [`@media (min-width: ${themeValue(options.screens.md)})`]: {
           '> .blocks-gallery-item': {
             minWidth: obj.width,
-            paddingLeft: `calc(${options.spacing.horizontal} / 2)`,
-            paddingRight: `calc(${options.spacing.horizontal} / 2)`,
+            paddingLeft: `calc(${themeValue(options.spacing.horizontal)} / 2)`,
+            paddingRight: `calc(${themeValue(options.spacing.horizontal)} / 2)`,
           },
         },
 

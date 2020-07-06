@@ -1,7 +1,11 @@
 const pluginWithDefaultConfig = require('./util/plugin-with-default-config');
+const themeRecursive = require('./util/theme-recursive');
 
 module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
-  const options = theme('gutenberg');
+  const themeValue = themeRecursive(theme);
+
+  const colGap = themeValue(theme('gutenberg.spacing.horizontal'));
+  const rowGap = themeValue(theme('gutenberg.spacing.vertical.default'));
 
   const specialAlignment = {
     '.wp-block-embed.alignfull, .wp-block-embed.alignwide': {
@@ -9,8 +13,8 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
       paddingRight: 0,
       marginLeft: 'auto',
       marginRight: 'auto',
-      marginTop: options.rowGap,
-      marginBottom: options.rowGap,
+      marginTop: rowGap,
+      marginBottom: rowGap,
 
       'iframe, video': {
         width: '100%',
@@ -27,7 +31,7 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
 
       iframe: {
         width: '100%',
-        paddingRight: theme('gutenberg.columnGap'),
+        paddingRight: colGap,
       },
     },
   };
@@ -39,7 +43,7 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
 
       iframe: {
         width: '100%',
-        paddingLeft: theme('gutenberg.columnGap'),
+        paddingLeft: colGap,
       },
     },
   };
@@ -52,8 +56,8 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
         width: '100%',
         marginLeft: 'auto',
         marginRight: 'auto',
-        paddingTop: theme('gutenberg.rowGap'),
-        paddingBottom: theme('gutenberg.rowGap'),
+        paddingTop: rowGap,
+        paddingBottom: rowGap,
       },
     },
   };

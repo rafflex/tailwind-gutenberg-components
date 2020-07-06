@@ -1,6 +1,11 @@
 const pluginWithDefaultConfig = require('./util/plugin-with-default-config');
+const themeRecursive = require('./util/theme-recursive');
 
 module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
+  const themeValue = themeRecursive(theme);
+
+  const colGap = themeValue(theme('gutenberg.spacing.horizontal'));
+
   const specialAlignments = {
     '.wp-block-image.alignfull, .wp-block-image.alignwide': {
       paddingLeft: 0,
@@ -23,7 +28,7 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
 
       img: {
         width: '100%',
-        paddingRight: theme('gutenberg.spacing.horizontal'),
+        paddingRight: colGap,
       },
     },
   };
@@ -35,7 +40,7 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
 
       img: {
         width: '100%',
-        paddingLeft: theme('gutenberg.spacing.horizontal'),
+        paddingLeft: colGap,
       },
     },
   };

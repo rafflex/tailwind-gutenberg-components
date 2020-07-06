@@ -1,15 +1,21 @@
 /** Modules */
 const _ = require('lodash');
 const chroma = require('chroma-js');
+const flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette')
+  .default;
 const pluginWithDefaultConfig = require('./util/plugin-with-default-config');
+const themeRecursive = require('./util/theme-recursive');
 
 /**
  * Colors
  */
 module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
-  const options = theme('gutenberg.colors');
+  const themeValue = themeRecursive(theme);
+  const options = theme('gutenberg.colors', theme('colors', {}));
 
-  const colors = _.map(options, (color, name) => ({
+  const palette = flattenColorPalette(themeValue(options));
+
+  const colors = _.map(palette, (color, name) => ({
     [`.has-${name}-color`]: {
       color,
     },
@@ -24,7 +30,7 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
   }));
 
   const validColors = _.filter(
-    options,
+    palette,
     (color) =>
       _.isNumber(color) ||
       `${color}`.trim().match(/^(#|rgb|hsl|hsv|hsi|lab|lch|hcl|lrgb)/),

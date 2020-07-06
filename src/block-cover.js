@@ -1,6 +1,9 @@
 const pluginWithDefaultConfig = require('./util/plugin-with-default-config');
+const themeRecursive = require('./util/theme-recursive');
 
 module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
+  const themeValue = themeRecursive(theme);
+
   const options = theme('gutenberg.blocks.cover');
 
   const cover = {
@@ -18,17 +21,17 @@ module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
         display: 'inline-block',
         width: '100%',
         height: '100%',
-        paddingTop: options.verticalPadding,
-        paddingBottom: options.verticalPadding,
+        paddingTop: themeValue(options.verticalPadding),
+        paddingBottom: themeValue(options.verticalPadding),
         backgroundColor: 'inherit',
         zIndex: theme('zIndex')['10'],
         color: theme('colors').white,
 
         '*': {
           position: 'relative',
-          color: theme('colors').white,
-          zIndex: theme('zIndex')['20'],
-          paddingBottom: options.itemsSpacing,
+          color: themeValue(options.contentColor),
+          zIndex: themeValue(options.zIndex),
+          paddingBottom: themeValue(options.itemsSpacing),
           textAlign: 'center',
         },
       },

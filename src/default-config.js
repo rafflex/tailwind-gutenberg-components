@@ -171,6 +171,13 @@ module.exports = {
   },
 
   /**
+   * Gallery settings
+   */
+  gallery: {
+    columns: 8,
+  },
+
+  /**
    * Keys for `gutenberg.figCaption.textAlign`
    * map to the alignment of the containing block
    */
@@ -203,6 +210,7 @@ module.exports = {
       contentColor: (theme) => theme('colors.white'),
       verticalPadding: (theme) => theme('spacing.64'),
       itemsSpacing: (theme) => theme('spacing.4'),
+      zIndex: (theme) => theme('zIndex.20'),
     },
 
     /**
