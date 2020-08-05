@@ -1,64 +1,91 @@
+const pluginWithDefaultConfig = require('./util/plugin-with-default-config');
+const themeRecursive = require('./util/theme-recursive');
+
 /**
  * Grid
  */
-const constructGridObject = () => {
-  var gridTemplate = []
-  var gridIteration = 2
+const makeGridTemplate = ({ max = 12, start = 1 }) => {
+  const template = [];
+  let column = start;
 
-  while (gridIteration < 13) {
-    gridTemplate.push({
-      'count': gridIteration,
-      'selector': `&.has-${gridIteration}-columns`,
-    })
+  while (column <= max) {
+    template.push({
+      count: column,
+      selector: `&.has-${column}-columns`,
+    });
 
-    gridIteration++
+    column += 1;
   }
 
-  return gridTemplate
-}
+  return template;
+};
 
-module.exports = ({ addComponents, theme }) => {
-  const options = theme('gutenberg')
-  const colGap = options.spacing.horizontal
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
+  const themeValue = themeRecursive(theme);
 
-  const gridTemplate = constructGridObject()
+  const colGap = themeValue(theme('gutenberg.spacing.horizontal'));
+  const breakPoint = themeValue(theme('screens.md'));
 
-  const columns = gridTemplate.map(obj => ({
+  const gridTemplate = makeGridTemplate({ max: 12, start: 2 });
+
+  const columns = {
     [`div:not(.wp-block-group)`]: {
       '.wp-block-columns, .is-grid': {
         paddingLeft: colGap,
         paddingRight: colGap,
+        marginLeft: `-${colGap}`,
+        marginRight: `-${colGap}`,
+
+        display: 'flex',
+        flexDirection: 'column',
+        flexWrap: 'nowrap',
+        gap: colGap,
+
+        [`@media (min-width: ${breakPoint})`]: {
+          flexDirection: 'row',
+
+          '> .wp-block-column': {
+            flexBasis: 0,
+            flexGrow: 1,
+          },
+
+          '> .wp-block-column[style*="flex-basis:"]': {
+            flexGrow: 0,
+          },
+        },
 
         /**
          * Prefer grid for supporting browsers.
          */
-        '@supports (display: grid)': {
-          [obj.selector]: {
-            display: 'grid',
-            [`@media (min-width: ${options.screens.md})`]: {
-              'grid-template-columns': `repeat(${obj.count}, minmax(0, 1fr))`,
-            },
-            'grid-column-gap': colGap,
-          },
-        },
+        '@supports (display: grid)': {},
 
         /**
          * Fallback to flex.
          */
-        '@supports not (display: grid)': {
-          [obj.selector]: {
-            display: 'flex',
-            flexWrap: 'no-wrap',
-            '> .wp-block-column': {
-              flex: 1,
-            },
-          },
-        },
+        '@supports not (display: grid)': {},
       },
     },
-  }))
+  };
 
-  addComponents([
-    columns,
-  ])
-}
+  gridTemplate.forEach((obj) => {
+    // columns[`div:not(.wp-block-group)`]['.wp-block-columns, .is-grid']['@supports (display: grid)'][obj.selector] = {
+    //   display: 'grid',
+    //   'grid-column-gap': colGap,
+    //   [`@media (min-width: ${breakPoint})`]: {
+    //     'grid-template-columns': `repeat(${obj.count}, minmax(0, 1fr))`,
+    //   },
+    // };
+
+    columns[`div:not(.wp-block-group)`]['.wp-block-columns, .is-grid'][
+      '@supports not (display: grid)'
+    ][obj.selector] = {
+      display: 'flex',
+      flexWrap: 'nowrap',
+      '> .wp-block-column': {
+        flex: 1,
+      },
+    };
+  });
+
+  addComponents([columns], { respectPrefix: false });
+});

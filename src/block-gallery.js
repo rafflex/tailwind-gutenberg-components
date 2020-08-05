@@ -1,29 +1,34 @@
+const pluginWithDefaultConfig = require('./util/plugin-with-default-config');
+const themeRecursive = require('./util/theme-recursive');
+
 /**
  * Grid
  */
-const makeGrid = () => {
-  let gridTemplate = [],
-      gridIteration = 1
+const makeGridTemplate = ({ max = 12, start = 1 }) => {
+  const template = [];
+  let column = start;
 
-  while (gridIteration < 9) {
-    gridTemplate.push({
-      'count': gridIteration,
-      'width': `${100 / gridIteration}%`,
-      'selector': `&.columns-${gridIteration}`,
-    })
+  while (column <= max) {
+    template.push({
+      count: column,
+      width: `${100 / column}%`,
+      selector: `&.columns-${column}`,
+    });
 
-    gridIteration++
+    column += 1;
   }
 
-  return gridTemplate
-}
+  return template;
+};
 
-module.exports = ({ addComponents, theme }) => {
-  const options = theme('gutenberg')
-  const gridTemplate = makeGrid()
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
+  const themeValue = themeRecursive(theme);
 
-  const gallery = gridTemplate.map(obj => ({
-    ['.wp-block-gallery, .blocks-gallery-grid']: {
+  const options = theme('gutenberg');
+  const gridTemplate = makeGridTemplate({ max: 8 });
+
+  const gallery = gridTemplate.map((obj) => ({
+    '.wp-block-gallery, .blocks-gallery-grid': {
       display: 'flex',
       flexGrow: 1,
       flexDirection: 'row',
@@ -35,22 +40,24 @@ module.exports = ({ addComponents, theme }) => {
         '> .blocks-gallery-item': {
           flex: 1,
           minWidth: '100%',
-          paddingBottom: `calc(${options.spacing.vertical.default} / 2)`,
+          paddingBottom: `calc(${themeValue(
+            options.spacing.vertical.default,
+          )} / 2)`,
 
-          ['figure, figure img']: {
+          'figure, figure img': {
             width: '100%',
           },
         },
 
-        [`@media (min-width: ${options.screens.md})`]: {
+        [`@media (min-width: ${themeValue(options.screens.md)})`]: {
           '> .blocks-gallery-item': {
             minWidth: obj.width,
-            paddingLeft: `calc(${options.spacing.horizontal} / 2)`,
-            paddingRight: `calc(${options.spacing.horizontal} / 2)`,
+            paddingLeft: `calc(${themeValue(options.spacing.horizontal)} / 2)`,
+            paddingRight: `calc(${themeValue(options.spacing.horizontal)} / 2)`,
           },
         },
 
-        ['&.is-cropped figure, &.is-cropped figure img']: {
+        '&.is-cropped figure, &.is-cropped figure img': {
           objectFit: 'cover',
           height: '100%',
           width: '100%',
@@ -61,9 +68,7 @@ module.exports = ({ addComponents, theme }) => {
         },
       },
     },
-  }))
+  }));
 
-  addComponents([
-    gallery,
-  ])
-}
+  addComponents([gallery], { respectPrefix: false });
+});

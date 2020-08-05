@@ -1,7 +1,44 @@
 {
   "name": "tailwind-gutenberg",
+  "version": "1.0.3",
+  "author": {
+    "name": "Ethan Veres"
+  },
+  "license": "MIT",
+  "files": [
+    "src"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "prettier": {
+    "printWidth": 80,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "dependencies": {
+    "chroma-js": "2.1.0",
+    "tailwindcss": "^1.4.0"
+  },
   "devDependencies": {
-    "chroma-js": "2.0.3",
-    "tailwindcss": "^1.2.0"
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.3"
+  },
+  "peerDependencies": {
+    "lodash": "^4.17.15"
   }
 }

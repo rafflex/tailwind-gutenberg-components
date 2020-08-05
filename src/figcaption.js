@@ -1,49 +1,42 @@
-module.exports = ({ addComponents, theme }) => {
+const pluginWithDefaultConfig = require('./util/plugin-with-default-config');
+const themeRecursive = require('./util/theme-recursive');
+
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
+  const themeValue = themeRecursive(theme);
+
+  const colGap = themeValue(theme('gutenberg.spacing.horizontal'));
+  const rowGap = themeValue(theme('gutenberg.spacing.vertical.default'));
+
   const figCaption = {
     '.alignfull, .alignwide': {
-      'figcaption': {
-        paddingTop: theme('gutenberg.spacing.horizontal'),
+      figcaption: {
+        paddingTop: colGap,
         paddingBottom: 0,
-        textAlign: theme('gutenberg.figCaption.align.wide'),
+        textAlign: themeValue(theme('gutenberg.figCaption.align.wide')),
       },
     },
 
     '.alignleft': {
-      'figcaption': {
+      figcaption: {
         textAlign: theme('gutenberg.figCaption.align.left'),
-        padding: `
-          ${theme('gutenberg.spacing.horizontal')}
-          ${theme('gutenberg.spacing.vertical.default')}
-          ${theme('gutenberg.spacing.horizontal')}
-          0
-        `,
+        padding: `${colGap} ${rowGap} ${colGap} 0`,
       },
     },
 
     '.aligncenter': {
-      'figcaption': {
+      figcaption: {
         textAlign: theme('gutenberg.figCaption.align.left'),
-        padding: `
-          ${theme('gutenberg.spacing.horizontal')}
-          ${theme('gutenberg.spacing.vertical.default')}
-          ${theme('gutenberg.spacing.horizontal')}
-          0
-        `,
+        padding: `${colGap} ${rowGap} ${colGap} 0`,
       },
     },
 
     '.alignright': {
-      'figcaption': {
+      figcaption: {
         textAlign: theme('gutenberg.figCaption.align.right'),
-        padding: `
-          ${theme('gutenberg.spacing.horizontal')}
-          ${theme('gutenberg.spacing.vertical.default')}
-          ${theme('gutenberg.spacing.horizontal')}
-          0
-        `,
+        padding: `${colGap} ${rowGap} ${colGap} 0`,
       },
     },
-  }
+  };
 
-  addComponents([figCaption])
-}
+  addComponents([figCaption], { respectPrefix: false });
+});

@@ -1,13 +1,20 @@
-module.exports = ({ addComponents, theme }) => {
-  const opts = theme('gutenberg')
+const pluginWithDefaultConfig = require('./util/plugin-with-default-config');
+const themeRecursive = require('./util/theme-recursive');
+
+module.exports = pluginWithDefaultConfig(({ addComponents, theme }) => {
+  const themeValue = themeRecursive(theme);
+
+  const colGap = themeValue(theme('gutenberg.spacing.horizontal'));
+  const rowGap = themeValue(theme('gutenberg.spacing.vertical.default'));
+
   const specialAlignment = {
     '.wp-block-embed.alignfull, .wp-block-embed.alignwide': {
       paddingLeft: 0,
       paddingRight: 0,
       marginLeft: 'auto',
       marginRight: 'auto',
-      marginTop: opts.rowGap,
-      marginBottom: opts.rowGap,
+      marginTop: rowGap,
+      marginBottom: rowGap,
 
       'iframe, video': {
         width: '100%',
@@ -15,31 +22,31 @@ module.exports = ({ addComponents, theme }) => {
         marginRight: 'auto',
       },
     },
-  }
+  };
 
   const alignLeft = {
     '.wp-block-embed .alignleft': {
       float: 'left',
       maxWidth: '50%',
 
-      'iframe': {
+      iframe: {
         width: '100%',
-        paddingRight: theme('gutenberg.columnGap'),
+        paddingRight: colGap,
       },
     },
-  }
+  };
 
   const alignRight = {
     '.wp-block-embed .alignRight': {
       float: 'right',
       maxWidth: '50%',
 
-      'iframe': {
+      iframe: {
         width: '100%',
-        paddingLeft: theme('gutenberg.columnGap'),
+        paddingLeft: colGap,
       },
     },
-  }
+  };
 
   const alignNone = {
     '.wp-block-embed:not(.alignleft):not(.alignright):not(.alignfull):not(.alignwide)': {
@@ -49,16 +56,13 @@ module.exports = ({ addComponents, theme }) => {
         width: '100%',
         marginLeft: 'auto',
         marginRight: 'auto',
-        paddingTop: theme('gutenberg.rowGap'),
-        paddingBottom: theme('gutenberg.rowGap'),
+        paddingTop: rowGap,
+        paddingBottom: rowGap,
       },
     },
-  }
+  };
 
-  addComponents([
-    specialAlignment,
-    alignLeft,
-    alignRight,
-    alignNone,
-  ])
-}
+  addComponents([specialAlignment, alignLeft, alignRight, alignNone], {
+    respectPrefix: false,
+  });
+});
